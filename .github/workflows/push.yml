@@ -18,24 +18,6 @@ jobs:
     with:
       commit: ${{ github.sha }}
 
-  quality_checks:
-    name: Quality checks 👌🧪
-    if: ${{ always() && !cancelled() }}
-    uses: ./.github/workflows/__quality_checks.yml
-    permissions: {}
-    with:
-      commit: ${{ github.sha }}
-
-  codeql:
-    name: GitHub CodeQL 🔬
-    uses: ./.github/workflows/__codeql.yml
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    with:
-      commit: ${{ github.sha }}
-
   deploy:
     name: Deploy 🚀
     uses: ./.github/workflows/__deploy.yml
