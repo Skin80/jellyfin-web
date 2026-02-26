@@ -8,17 +8,10 @@ on:
   push:
     branches:
       - master
-      - release*
     paths-ignore:
       - '**/*.md'
 
 jobs:
-  automation:
-    name: Automation 🎛️
-    if: ${{ github.repository == 'jellyfin/jellyfin-web' }}
-    uses: ./.github/workflows/__automation.yml
-    secrets: inherit
-
   main:
     name: 'Unstable release 🚀⚠️'
     uses: ./.github/workflows/__package.yml
@@ -45,7 +38,6 @@ jobs:
 
   deploy:
     name: Deploy 🚀
-    if: ${{ github.repository == 'jellyfin/jellyfin-web' }}
     uses: ./.github/workflows/__deploy.yml
     needs:
       - main
