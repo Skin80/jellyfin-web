@@ -17,16 +17,3 @@ jobs:
     uses: ./.github/workflows/__package.yml
     with:
       commit: ${{ github.sha }}
-
-  deploy:
-    name: Deploy 🚀
-    uses: ./.github/workflows/__deploy.yml
-    needs:
-      - main
-    permissions:
-      contents: read
-      deployments: write
-    secrets: inherit
-    with:
-      branch: ${{ github.ref_name }}
-      comment: false
