@@ -33,19 +33,3 @@ jobs:
         with:
           name: ${{ inputs.artifact_name }}
           path: dist
-
-  compose-comment:
-    name: Compose and push comment 📝
-    # Always run so the comment is composed for the workflow summary
-    if: ${{ always() }}
-    uses: ./.github/workflows/__job_messages.yml
-    secrets: inherit
-    needs:
-      - cf-pages
-
-    with:
-      branch: ${{ inputs.branch }}
-      commit: ${{ inputs.commit }}
-      preview_url: ${{ needs.cf-pages.outputs.url }}
-      in_progress: false
-      comment: ${{ inputs.comment }}
